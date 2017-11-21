@@ -1,6 +1,7 @@
 package multi.thread.waitandnotify;
 
 /**
+ *
  * Created by ${WangChengYong} on 2017/11/17.
  */
 public class MainTest {
