@@ -1,6 +1,5 @@
 package multi.thread.lock;
 
-import com.sun.org.apache.xerces.internal.dom.PSVIAttrNSImpl;
 
 /**
  * Created by jeff on 2017/11/21.
