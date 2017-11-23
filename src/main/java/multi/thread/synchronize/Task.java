@@ -15,14 +15,13 @@ public class Task {
 
     public synchronized void dolongTimeTask() {
 
-        //sout
         try {
             System.out.println("begin task");
             Thread.sleep(3000);
             getData1 = "长时间处理任务返回结果1：" + Thread.currentThread().getName();
-            getData1 = "长时间处理任务返回结果2：" + Thread.currentThread().getName();
+            getData2 = "长时间处理任务返回结果2：" + Thread.currentThread().getName();
             System.out.println(getData1);
-            System.out.println(getData1);
+            System.out.println(getData2);
             System.out.println("end task");
 
         } catch (Exception e) {

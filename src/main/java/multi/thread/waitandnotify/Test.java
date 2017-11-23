@@ -1,10 +1,9 @@
 package multi.thread.waitandnotify;
 
 /**
- *
- * Created by ${WangChengYong} on 2017/11/17.
+ * Created by ${WangChengYong} on 2017/11/23.
  */
-public class MainTest {
+public class Test {
 
     public static void main(String[] args) {
         PrintStr printStr = new PrintStr();
