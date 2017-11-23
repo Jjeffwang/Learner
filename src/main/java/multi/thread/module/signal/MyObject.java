@@ -4,9 +4,7 @@ package multi.thread.module.signal;
  * Created by jeff on 2017/11/22.
  */
 public class MyObject {
-
-    private static MyObject myObject;
-
+    private volatile static MyObject myObject;
     public static MyObject getInstance() {
         try {
             //等同于 synchronized public static MyObject getInstance
