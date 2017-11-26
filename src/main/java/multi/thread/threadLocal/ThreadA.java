@@ -1,6 +1,5 @@
 package multi.thread.threadLocal;
 
-import javax.tools.Tool;
 
 /**
  * Created by ${WangChengYong} on 2017/11/21.
