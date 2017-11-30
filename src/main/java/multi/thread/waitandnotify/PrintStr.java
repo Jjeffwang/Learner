@@ -33,4 +33,8 @@ public class PrintStr {
         }
     }
 
+    public void read(){
+        System.out.println(flag);
+    }
+
 }

@@ -5,7 +5,7 @@ package multi.thread.waitandnotify;
  */
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         PrintStr printStr = new PrintStr();
         for (int i = 0; i <= 10; i++) {
             MythreadA mythreadA = new MythreadA(printStr);
@@ -14,6 +14,11 @@ public class Test {
             MythreadB mythreadB = new MythreadB(printStr);
             Thread threadB = new Thread(mythreadB);
             threadB.start();
+            threadA.join();
+            threadB.join();
+            MythreadC mythreadC=new MythreadC(printStr);
+            Thread threadC=new Thread(mythreadC);
+            threadC.start();
         }
     }
 }
