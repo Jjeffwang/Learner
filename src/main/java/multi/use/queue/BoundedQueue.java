@@ -30,6 +30,9 @@ public class BoundedQueue<T> {
                 notFull.await();
             }
             items[addIndex] = t;
+            if(++addIndex==items.length){
+              addIndex=0;
+            }
             ++count;
             notEmpty.signal();
         } finally {
