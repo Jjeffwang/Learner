@@ -1,4 +1,4 @@
-package rpc.exeporter;
+package rpc.exporter;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
  *
  * Created by ${WangChengYong} on 2018/1/19.
  */
-public class RpcExeporter {
+public class RpcExporter {
 
     static Executor executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
@@ -51,13 +51,16 @@ public class RpcExeporter {
             try {
                 input = new ObjectInputStream(client.getInputStream());
                 String interfaceName = input.readUTF();
+                System.out.println(interfaceName);
                 Class<?> service = Class.forName(interfaceName);
                 String methodName = input.readUTF();
-                Class<?>[] paramsterTypes = (Class<?>[]) input.readObject();
+                System.out.println(methodName);
+                Class<?>[] parameterTypes = (Class<?>[]) input.readObject();
                 Object[] arguments = (Object[]) input.readObject();
-                Method method = service.getMethod(methodName, paramsterTypes);
+                Method method = service.getMethod(methodName, parameterTypes);
                 Object result = method.invoke(service.newInstance(), arguments);
                 output = new ObjectOutputStream(client.getOutputStream());
+
                 output.writeObject(result);
             } catch (Exception e) {
                 e.printStackTrace();
