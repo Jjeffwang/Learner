@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form>
+    <input id="txt" type="text">
+    <input id="but" type="button" onclick="demo(this)" value="按钮">
+</form>
+<script>
+
+    function demo() {
+        try {
+            var txt = document.getElementById("txt").value;
+            if (txt=="" || txt == null) {
+                throw "不能为空";
+            }
+        } catch (err) {
+            alert(err);
+        }
+    }
+</script>
+
+</body>
+</html>

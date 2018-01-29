@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="pid"></p>
+<script>
+    function sum(a,b) {
+        var sum=a+b;
+        alert(sum);
+        return sum;
+    }
+    sum(100,200)
+    document.getElementById("pid").innerHTML=sum(1,2)
+
+</script>
+<button onclick="sum(1,2)">按钮</button>
+<button onclose=""></button>
+</body>
+</html>
