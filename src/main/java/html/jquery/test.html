@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.12.3.js"></script>
+</head>
+<body>
+<input id="pid" type="text">
+<input id="but" type="button" onclick="demo(this)" value="查询">
+
+<div>
+    <tr id="tr1"></tr>
+</div>
+<script>
+    function demo() {
+        var aj = $.ajax({
+            url: 'http://127.0.0.1:8088/tzpay/getLogger',// 跳转到 action
+            data: {
+//              orderNo:document.getElementById("pid").value
+                orderNo: $("#pid").val()
+            },
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == "1000") {
+                    alert("修改成功！");
+
+                    window.location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function () {
+                alert("异常！");
+            }
+        });
+    }
+</script>
+</body>
+</html>
