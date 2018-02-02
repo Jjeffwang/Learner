@@ -10,7 +10,10 @@
 <input id="but" type="button" onclick="demo(this)" value="查询">
 
 <div>
-    <tr id="tr1"></tr>
+    第一个：
+    <div id="tr1">test</div>
+    第二个：
+    <div id="tr2">test</div>
 </div>
 <script>
     function demo() {
@@ -25,9 +28,10 @@
             dataType: 'json',
             success: function (data) {
                 if (data.code == "1000") {
-                    alert("修改成功！");
 
-                    window.location.reload();
+                    document.getElementById("tr1").innerHTML = data.msg;
+                    document.getElementById("tr2").innerHTML = data.orderLoggerVo.orderNo;
+//                    window.location.reload();
                 } else {
                     alert(data.msg);
                 }
@@ -37,6 +41,8 @@
             }
         });
     }
+
 </script>
+
 </body>
 </html>
