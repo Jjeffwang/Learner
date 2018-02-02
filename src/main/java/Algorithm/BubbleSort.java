@@ -2,6 +2,7 @@ package Algorithm;
 
 /**
  * 冒泡、快速：
+ * 先做第一次排序，后循环第一次排序
  * http://www.cnblogs.com/0201zcr/p/4763806.html
  * 选择
  * http://www.cnblogs.com/0201zcr/p/4764427.html
@@ -68,7 +69,6 @@ public class BubbleSort {
         }
     }
 
-
     /**
      * 快速排序
      *
@@ -124,6 +124,8 @@ public class BubbleSort {
      *
      * @param numbers 待排序数组
      */
+
+
     private static void insertSort(int[] numbers) {
 
         int size = numbers.length;

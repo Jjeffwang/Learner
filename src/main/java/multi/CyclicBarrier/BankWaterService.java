@@ -9,7 +9,7 @@ import java.util.concurrent.*;
  */
 public class BankWaterService implements Runnable {
 
-    /**
+    /**=
      * 创建4个屏障，处理完之后执行当前类的run方法
      */
     private CyclicBarrier cyclicBarrier = new CyclicBarrier(4, this);
@@ -27,7 +27,7 @@ public class BankWaterService implements Runnable {
                 public void run() {
                     countMap.put(Thread.currentThread().getName(),1);
                     try {
-                        //4个线程计算4次，没计算完成一次插入一个屏障
+                        //4个线程计算4次，每计算完成一次插入一个屏障
                         cyclicBarrier.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -36,7 +36,6 @@ public class BankWaterService implements Runnable {
                     }
                 }
             });
-
         }
     }
 

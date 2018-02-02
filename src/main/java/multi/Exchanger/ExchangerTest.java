@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
  */
 public class ExchangerTest {
 
-    private static final Exchanger<String> exg=new Exchanger<>();
+    private static final Exchanger<String> exg=new Exchanger<String>();
     private static ExecutorService executorService= Executors.newFixedThreadPool(2);
 
     public static void main(String[] args) {
@@ -42,5 +42,7 @@ public class ExchangerTest {
                 }
             }
         });
+
+        executorService.shutdown();
     }
 }
