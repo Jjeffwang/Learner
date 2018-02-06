@@ -30,9 +30,10 @@ public class BoundedQueue<T> {
                 notFull.await();
             }
             items[addIndex] = t;
-            if(++addIndex==items.length){
-              addIndex=0;
-            }
+            ++addIndex;
+//            if (++addIndex == items.length) {
+//              addIndex=0;
+//            }
             ++count;
             notEmpty.signal();
         } finally {
@@ -41,21 +42,30 @@ public class BoundedQueue<T> {
     }
 
     //由头部删除一个元素，如果数组为空则删除线程进入等待；知道有新添加元素
-    private T remove() throws InterruptedException {
+    public T remove() throws InterruptedException {
         lock.lock();
         try {
             while (count == 0) {
                 notEmpty.await();
             }
             Object x = items[removeIndex];
+            for (int i = 1; i < items.length; i++) {
+                items[i - 1] = items[i];
+                items[i] = null;
+            }
             if (++removeIndex == items.length) {
                 removeIndex = 0;
             }
+            --addIndex;
             --count;
             notFull.signal();
             return (T) x;
         } finally {
             lock.unlock();
         }
+    }
+
+    public T get(int index) {
+        return (T) items[index];
     }
 }
