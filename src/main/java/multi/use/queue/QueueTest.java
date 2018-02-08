@@ -1,5 +1,7 @@
 package multi.use.queue;
 
+import java.util.HashMap;
+
 /**
  * Created by ${WangChengYong} on 2018/2/6.
  */
@@ -26,6 +28,7 @@ public class QueueTest {
             System.out.println(boundedQueue.get(2));
             System.out.println(boundedQueue.get(3));
             System.out.println(boundedQueue.get(4));
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
