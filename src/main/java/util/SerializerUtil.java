@@ -19,7 +19,7 @@ public class SerializerUtil {
             //对象输出流
             //Hessian实现
             HessianSerializerOutput outputStream = new HessianSerializerOutput(byteArrayOut);
-            //java自带序列化实现
+            //java自带实现
 //            ObjectOutputStream outputStream = new ObjectOutputStream(byteArrayOut);
             //写入字节输出流，进行序列化
             outputStream.writeObject(t);
