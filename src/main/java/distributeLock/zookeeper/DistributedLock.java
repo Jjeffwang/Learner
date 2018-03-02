@@ -14,6 +14,15 @@ import java.util.concurrent.locks.Lock;
 
 /**
  * Created by ${WangChengYong} on 2018/2/26.
+ * <p>
+ * Zookeeper中有一种节点叫做顺序节点，故名思议，假如我们在/lock/目录下创建节3个点，ZooKeeper集群会按照提起创建的顺序来创建节点，节点分别为/lock/0000000001、/lock/0000000002、/lock/0000000003。
+ * ZooKeeper中还有一种名为临时节点的节点，临时节点由某个客户端创建，当客户端与ZooKeeper集群断开连接，则开节点自动被删除。
+ * 利用上面这两个特性，我们来看下获取实现分布式锁的基本逻辑：
+ * 1.客户端调用create()方法创建名为“locknode/guid-lock-”的节点，需要注意的是，这里节点的创建类型需要设置为EPHEMERAL_SEQUENTIAL。
+ * 2.客户端调用getChildren(“locknode”)方法来获取所有已经创建的子节点，同时在这个节点上注册上子节点变更通知的Watcher。
+ * 3.客户端获取到所有子节点path之后，如果发现自己在步骤1中创建的节点是所有节点中序号最小的，那么就认为这个客户端获得了锁。
+ * 如果在步骤3中发现自己并非是所有子节点中最小的，说明自己还没有获取到锁，就开始等待，直到下次子节点变更通知的时候，再进行子节点的获取，判断是否获取锁。
+ * 释放锁的过程相对比较简单，就是删除自己创建的那个子节点即可。
  */
 public class DistributedLock implements Lock, Watcher {
 
