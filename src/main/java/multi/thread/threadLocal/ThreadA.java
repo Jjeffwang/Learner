@@ -8,10 +8,10 @@ public class ThreadA extends Thread {
 
     @Override
     public void run() {
-       for(int i=0;i<10;i++){
-           Tools.threadLocal.set("ThreadA "+i+1);
-           System.out.println("ThreadA get "+Tools.threadLocal.get());
-       }
+        for (int i = 0; i < 10; i++) {
+            Tools.threadLocal.set("ThreadA " + i + 1);
+            System.out.println("ThreadA get " + Tools.threadLocal.get());
+        }
 
     }
 }

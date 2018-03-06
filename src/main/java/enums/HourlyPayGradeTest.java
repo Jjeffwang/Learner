@@ -6,8 +6,8 @@ package enums;
 public class HourlyPayGradeTest {
 
     public static void main(String[] args) {
-        HourlyPayGrade grade =HourlyPayGrade.JOURNEYMAN;
+        HourlyPayGrade grade = HourlyPayGrade.JOURNEYMAN;
 
-        System.out.println(grade.rate()*2);
+        System.out.println(grade.rate() * 2);
     }
 }

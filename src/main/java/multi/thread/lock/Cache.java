@@ -12,34 +12,34 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class Cache {
 
-    static Map<String,Object> map=new HashMap<String,Object>();
-    static ReentrantReadWriteLock reentrantReadWriteLock=new ReentrantReadWriteLock();
-    static Lock write=reentrantReadWriteLock.writeLock();
-    static Lock read=reentrantReadWriteLock.readLock();
+    static Map<String, Object> map = new HashMap<String, Object>();
+    static ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
+    static Lock write = reentrantReadWriteLock.writeLock();
+    static Lock read = reentrantReadWriteLock.readLock();
 
-    public static final Object get(String key){
+    public static final Object get(String key) {
         read.lock();
-        try{
+        try {
             return map.get(key);
-        }finally {
+        } finally {
             read.unlock();
         }
     }
 
-    public static final Object save(String key,Object value){
+    public static final Object save(String key, Object value) {
         write.lock();
-        try{
-            return map.put(key,value);
-        }finally {
+        try {
+            return map.put(key, value);
+        } finally {
             read.unlock();
         }
     }
 
-    public static final void clear(){
+    public static final void clear() {
         write.lock();
-        try{
+        try {
             map.clear();
-        }finally {
+        } finally {
             write.unlock();
         }
     }

@@ -6,11 +6,11 @@ package multi.thread.join;
 public class ThreadB extends Thread {
 
     @Override
-   synchronized public void run() {
+    synchronized public void run() {
         try {
-            System.out.println("begin   "+Thread.currentThread().getName() + System.currentTimeMillis());
+            System.out.println("begin   " + Thread.currentThread().getName() + System.currentTimeMillis());
             Thread.sleep(5000);
-            System.out.println("end   "+Thread.currentThread().getName() + System.currentTimeMillis());
+            System.out.println("end   " + Thread.currentThread().getName() + System.currentTimeMillis());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

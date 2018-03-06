@@ -2,8 +2,8 @@ package multi.thread.deadLock;
 
 /**
  * 模拟死锁，使用jdk中jps命令，查询线程id，在使用jstack查看是否出现死锁。
- *
- *
+ * <p>
+ * <p>
  * Created by ${WangChengYong} on 2017/11/21.
  */
 public class DealThread implements Runnable {
@@ -11,6 +11,7 @@ public class DealThread implements Runnable {
     public String username;
     public Object lock1 = new Object();
     public Object lock2 = new Object();
+
     public void setFlag(String username) {
         this.username = username;
     }

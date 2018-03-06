@@ -5,7 +5,7 @@ package multi.thread.threadLocal;
  */
 public class Tools {
 
-    public static ThreadLocal threadLocal=new ThreadLocal();
+    public static ThreadLocal threadLocal = new ThreadLocal();
 
 
 }

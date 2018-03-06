@@ -7,14 +7,14 @@ public class Mythread2 extends Thread {
 
     private MyOneList myOneList;
 
-    public Mythread2(MyOneList myOneList){
-        this.myOneList=myOneList;
+    public Mythread2(MyOneList myOneList) {
+        this.myOneList = myOneList;
     }
 
     @Override
     public void run() {
-        MyService myService=new MyService();
-        myService.addService(myOneList,"B");
+        MyService myService = new MyService();
+        myService.addService(myOneList, "B");
 
     }
 }

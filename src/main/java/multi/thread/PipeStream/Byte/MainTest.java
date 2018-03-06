@@ -16,10 +16,10 @@ public class MainTest {
             PipedInputStream input = new PipedInputStream();
             PipedOutputStream out = new PipedOutputStream();
             out.connect(input);
-            ThreadW threadW=new ThreadW(writeData,out);
+            ThreadW threadW = new ThreadW(writeData, out);
             threadW.start();
             Thread.sleep(3000);
-            ThreadR threadR=new ThreadR(readData,input);
+            ThreadR threadR = new ThreadR(readData, input);
             threadR.start();
         } catch (Exception e) {
             e.printStackTrace();

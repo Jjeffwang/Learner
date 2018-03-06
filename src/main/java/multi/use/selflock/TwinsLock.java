@@ -8,7 +8,7 @@ import java.util.concurrent.locks.Lock;
 
 /**
  * Created by jeff on 2017/11/27.
- *
+ * <p>
  * 自定义同步组件，同一时刻只能有两个线程获取到锁
  */
 public class TwinsLock implements Lock {

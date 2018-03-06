@@ -9,6 +9,7 @@ import redis.clients.jedis.JedisPoolConfig;
 public class Service {
 
     private static JedisPool jedisPool = null;
+
     static {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         // 设置最大连接数

@@ -26,19 +26,17 @@ public class BubbleSort {
 //        }
 
 
-        int arrayLength=numbers.length;
-        for(int i=0;i<arrayLength-1;i++){
+        int arrayLength = numbers.length;
+        for (int i = 0; i < arrayLength - 1; i++) {
             //建堆
-            buildMaxHeap(numbers,arrayLength-1-i);
+            buildMaxHeap(numbers, arrayLength - 1 - i);
             //交换堆顶和最后一个元素
-            swap(numbers,0,arrayLength-1-i);
+            swap(numbers, 0, arrayLength - 1 - i);
 //            System.out.println(Arrays.toString(numbers));
         }
         for (int number : numbers) {
             System.out.println(number);
         }
-
-
 
 
     }
@@ -175,6 +173,7 @@ public class BubbleSort {
      * 依此类推，直到只有两个节点的堆，并对 它们作交换，最后得到有n个节点的有序序列。
      * 从算法描述来看，堆排序需要两个过程，一是建立堆，二是堆顶与堆的最后一个元素交换位置。
      * 所以堆排序有两个函数组成。一是建堆的渗透函数，二是反复调用渗透函数实现排序的函数。
+     *
      * @param data
      * @param lastIndex
      */

@@ -5,5 +5,5 @@ package multi.thread.p_r;
  */
 public class ValueObject {
 
-    public static String value="";
+    public static String value = "";
 }

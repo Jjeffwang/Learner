@@ -13,7 +13,7 @@ import java.net.Socket;
  * 创建socket客户端，根据指定地址连接远程服务
  * 将远程服务调用所需的接口类、方法名、参数列表等编码后发送给服务的提供者
  * 同步阻塞等待服务端的返回应答，获取应答后返回
- *
+ * <p>
  * Created by ${WangChengYong} on 2018/1/19.
  */
 public class RpcImporter<S> {
@@ -26,24 +26,24 @@ public class RpcImporter<S> {
                 Socket socket = null;
                 ObjectOutputStream output = null;
                 ObjectInputStream input = null;
-                try{
-                    socket=new Socket();
+                try {
+                    socket = new Socket();
                     socket.connect(address);
-                    output=new ObjectOutputStream(socket.getOutputStream());
+                    output = new ObjectOutputStream(socket.getOutputStream());
                     output.writeUTF(serviceClass.getName());
                     output.writeUTF(method.getName());
                     output.writeObject(method.getParameterTypes());
                     output.writeObject(args);
-                    input=new ObjectInputStream(socket.getInputStream());
+                    input = new ObjectInputStream(socket.getInputStream());
                     return input.readObject();
-                }finally {
-                    if(socket!=null){
+                } finally {
+                    if (socket != null) {
                         socket.close();
                     }
-                    if(output!=null){
+                    if (output != null) {
                         output.close();
                     }
-                    if(input!=null){
+                    if (input != null) {
                         input.close();
                     }
                 }

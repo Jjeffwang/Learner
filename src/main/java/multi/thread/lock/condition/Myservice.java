@@ -19,11 +19,11 @@ public class Myservice {
                 condition.await();
             }
             System.out.println("A");
-            hasValue=true;
+            hasValue = true;
             condition.signalAll();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
         }
     }
@@ -35,11 +35,11 @@ public class Myservice {
                 condition.await();
             }
             System.out.println("B");
-            hasValue=false;
+            hasValue = false;
             condition.signalAll();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
         }
     }

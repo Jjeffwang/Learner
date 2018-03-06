@@ -9,15 +9,15 @@ import java.util.concurrent.Executors;
  */
 public class ExchangerTest {
 
-    private static final Exchanger<String> exg=new Exchanger<String>();
-    private static ExecutorService executorService= Executors.newFixedThreadPool(2);
+    private static final Exchanger<String> exg = new Exchanger<String>();
+    private static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
     public static void main(String[] args) {
 
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                String A="流水号A";
+                String A = "流水号A";
                 try {
                     exg.exchange(A);
                 } catch (InterruptedException e) {
@@ -29,9 +29,9 @@ public class ExchangerTest {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                String B="流水号B";
+                String B = "流水号B";
                 try {
-                    String A=exg.exchange(B);
+                    String A = exg.exchange(B);
                     System.out.println("是否一致？");
                     System.out.println(A.equals(B));
                     System.out.println(A);

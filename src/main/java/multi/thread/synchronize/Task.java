@@ -1,9 +1,5 @@
 package multi.thread.synchronize;
 
-import sun.applet.Main;
-
-import javax.xml.bind.SchemaOutputResolver;
-
 /**
  * Created by jeff on 2017/11/14.
  */
@@ -32,10 +28,10 @@ public class Task {
 
     //psvm
     public static void main(String[] args) {
-        Task task=new Task();
-        Mythread1 mythread1=new Mythread1(task);
+        Task task = new Task();
+        Mythread1 mythread1 = new Mythread1(task);
         mythread1.start();
-        Mythread2 mythread2=new Mythread2(task);
+        Mythread2 mythread2 = new Mythread2(task);
         mythread2.start();
 
         try {
@@ -44,14 +40,14 @@ public class Task {
             e.printStackTrace();
         }
 
-        long beginTime=CommounUtils.beginTime1;
-        if(CommounUtils.beginTime2<CommounUtils.beginTime1){
-            beginTime=CommounUtils.beginTime2;
+        long beginTime = CommounUtils.beginTime1;
+        if (CommounUtils.beginTime2 < CommounUtils.beginTime1) {
+            beginTime = CommounUtils.beginTime2;
         }
-        long endTime=CommounUtils.endTime1;
-        if(CommounUtils.endTime2>CommounUtils.endTime1){
-            endTime=CommounUtils.endTime2;
+        long endTime = CommounUtils.endTime1;
+        if (CommounUtils.endTime2 > CommounUtils.endTime1) {
+            endTime = CommounUtils.endTime2;
         }
-        System.out.println("耗时："+(endTime-beginTime)/1000);
+        System.out.println("耗时：" + (endTime - beginTime) / 1000);
     }
 }

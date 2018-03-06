@@ -33,7 +33,7 @@ public class PrintStr {
         }
     }
 
-    public void read(){
+    public void read() {
         System.out.println(flag);
     }
 

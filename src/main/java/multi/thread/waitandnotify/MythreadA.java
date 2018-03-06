@@ -6,9 +6,11 @@ package multi.thread.waitandnotify;
 public class MythreadA implements Runnable {
 
     private PrintStr printStr;
-    public MythreadA(PrintStr printStr){
-        this.printStr=printStr;
+
+    public MythreadA(PrintStr printStr) {
+        this.printStr = printStr;
     }
+
     @Override
     public void run() {
         printStr.printA();

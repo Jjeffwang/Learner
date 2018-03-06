@@ -9,9 +9,10 @@ public class ThreadW extends Thread {
 
     private WriteData writeData;
     private PipedOutputStream out;
-    public ThreadW( WriteData writeData,PipedOutputStream out){
-        this.writeData=writeData;
-        this.out=out;
+
+    public ThreadW(WriteData writeData, PipedOutputStream out) {
+        this.writeData = writeData;
+        this.out = out;
     }
 
     @Override

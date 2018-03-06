@@ -5,15 +5,16 @@ package multi.thread.module.signal;
  */
 public class StaticObject {
 
-    private static StaticObject  staticObject=null;
+    private static StaticObject staticObject = null;
 
-    private StaticObject (){}
-
-    static {
-        staticObject=new StaticObject();
+    private StaticObject() {
     }
 
-    public static StaticObject getInstance(){
+    static {
+        staticObject = new StaticObject();
+    }
+
+    public static StaticObject getInstance() {
         return staticObject;
     }
 }

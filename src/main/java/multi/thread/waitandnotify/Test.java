@@ -16,8 +16,8 @@ public class Test {
             threadB.start();
             threadA.join();
             threadB.join();
-            MythreadC mythreadC=new MythreadC(printStr);
-            Thread threadC=new Thread(mythreadC);
+            MythreadC mythreadC = new MythreadC(printStr);
+            Thread threadC = new Thread(mythreadC);
             threadC.start();
         }
     }

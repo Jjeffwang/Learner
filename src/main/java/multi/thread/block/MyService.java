@@ -5,16 +5,16 @@ package multi.thread.block;
  */
 public class MyService {
 
-     public synchronized MyOneList addService(MyOneList list,String data){
+    public synchronized MyOneList addService(MyOneList list, String data) {
 
         try {
 //            synchronized (list) {
-                if (list.getSize() < 1) {
-                    //模拟远程花费2秒返回
-                    Thread.sleep(2000);
-                    list.add(data);
+            if (list.getSize() < 1) {
+                //模拟远程花费2秒返回
+                Thread.sleep(2000);
+                list.add(data);
 
-                }
+            }
 //            }
 
         } catch (InterruptedException e) {
@@ -25,11 +25,11 @@ public class MyService {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        MyOneList list=new MyOneList();
-        Mythread1 mythread1=new Mythread1(list);
+        MyOneList list = new MyOneList();
+        Mythread1 mythread1 = new Mythread1(list);
         mythread1.setName("A");
         mythread1.start();
-        Mythread2 mythread2=new Mythread2(list);
+        Mythread2 mythread2 = new Mythread2(list);
         mythread2.setName("B");
         mythread2.start();
         Thread.sleep(3000);

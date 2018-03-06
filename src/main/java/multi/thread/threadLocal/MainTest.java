@@ -6,8 +6,8 @@ package multi.thread.threadLocal;
 public class MainTest {
 
     public static void main(String[] args) {
-        ThreadA threadA=new ThreadA();
-        ThreadB threadB=new ThreadB();
+        ThreadA threadA = new ThreadA();
+        ThreadB threadB = new ThreadB();
         threadA.start();
         threadB.start();
     }

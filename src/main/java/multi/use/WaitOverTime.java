@@ -8,8 +8,8 @@ public class WaitOverTime {
 
     private String result;
 
-    public WaitOverTime(String result){
-        this.result=result;
+    public WaitOverTime(String result) {
+        this.result = result;
     }
 
     public synchronized Object get(long mills) {
@@ -18,18 +18,18 @@ public class WaitOverTime {
             long remaining = mills;
             while (result == null && remaining > 0) {
                 wait(remaining);
-                remaining=future-System.currentTimeMillis();
+                remaining = future - System.currentTimeMillis();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return  result;
+        return result;
     }
 
 
     public static void main(String[] args) {
-        String result="test";
-        WaitOverTime waitOverTime=new WaitOverTime(result);
+        String result = "test";
+        WaitOverTime waitOverTime = new WaitOverTime(result);
         System.out.println(waitOverTime.get(5000));
 
     }
