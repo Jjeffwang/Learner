@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+
+<p id="timeText"></p>
+<script>
+//    function startTime() {
+//        var today=new Date();
+////        alert(today)
+//        var h=today.getHours();
+//        var m=today.getMinutes();
+//        var s=today.getSeconds();
+//        document.getElementById("timeText").innerHTML=h+":"+m+":"+s;
+//        t=setTimeout(function () {
+//            startTime()
+//        },1000)
+//    }
+
+    var myTime=setInterval(function () {
+        getTime();
+    },1000)
+    function getTime() {
+        var date=new Date();
+        var t=date.toLocaleTimeString();
+        document.getElementById("timeText").innerHTML=t;
+    }
+</script>
+</body>
+</html>

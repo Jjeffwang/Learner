@@ -8,6 +8,10 @@
 <body>
 
 <div class="div" onmouseout="out(this)" onmouseover="over(this)"></div>
+<button id="btn">按钮</button>
+<div>
+    <a id="aid" href="http://www.baidu.com">baidu</a>
+</div>
 <script>
 
     function out(out) {
@@ -15,6 +19,15 @@
     }
     function over(over) {
         over.innerHTML = "world";
+    }
+
+    document.getElementById("btn").addEventListener("click",showType);
+    document.getElementById("aid").addEventListener("click",showHref);
+    function showType(event) {
+        alert(event.type)
+    }
+    function showHref(event) {
+        event.preventDefault();
     }
 </script>
 </body>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="txt" type="text"/>
+<button id="btn" onclick="safe()">点击</button>
+<script>
+    function safe() {
+        var txt=document.getElementById("txt").value;
+        if(txt=="ll"){
+            history.back();
+        }else {
+           window.open("http://www.baidu.com");
+//           window.close();
+        }
+    }
+</script>
+</body>
+</html>
