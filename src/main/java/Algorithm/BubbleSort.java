@@ -38,6 +38,10 @@ public class BubbleSort {
             System.out.println(number);
         }
 
+        System.out.println("-------------------------");
+        int result=halfSearch(numbers,22);
+        System.out.println(result);
+        System.out.println(numbers[result]);
 
     }
 
@@ -287,5 +291,31 @@ public class BubbleSort {
             quickSort(numbers, middle + 1, high); //对高字段表进行递归排序
         }
 
+    }
+
+    /**
+     * 二分查找，默认数组是升序
+     * @param nums
+     * @param searchNum
+     * @return
+     */
+    private static int halfSearch(int[] nums,int searchNum){
+        int first=0;
+        int end=nums.length;
+        int count=0;
+        for(int i=0;i<end;i++){
+            count++;
+            int temp=(end-first)/2;
+            if(searchNum==nums[temp]){
+                System.out.println("查询次数为："+count);
+                return temp;
+            }
+            if(searchNum<nums[temp]){
+                end=temp-1;
+            }else {
+                first=temp+1;
+            }
+        }
+        return 0;
     }
 }
