@@ -9,15 +9,10 @@ public class ReflectCase {
 
     public static void main(String[] args) throws Exception {
         System.out.println(Proxy.class);
-        Class target= Class.forName("reflect.ReflectCase$Proxy");
+        Class target= Class.forName("reflect.Proxy");
         Method method=target.getDeclaredMethod("run");
+        Object obj=target.newInstance();
         System.out.println(method);
-//        method.invoke(obj);
-    }
-
-    static class Proxy{
-        public void run(){
-            System.out.println("running!!!");
-        }
+        method.invoke(obj);
     }
 }
