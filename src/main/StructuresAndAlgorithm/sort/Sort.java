@@ -1,5 +1,6 @@
 package sort;
 
+
 /**
  * Created by ${WangChengYong} on 2018/4/9.
  */
@@ -8,7 +9,7 @@ public class Sort {
     public static void main(String[] args) {
         int[] numbers = new int[]{22, 13, 66, 66, 34, 99, 88, 65, 55, 33, 21, 77, 43};
 //        buildMaxHeap(numbers,numbers.length-1);
-        mergeSort(numbers);
+        quickSort(numbers);
 //        shellSort(numbers);
         for (int number : numbers) {
             System.out.println(number);
@@ -87,11 +88,49 @@ public class Sort {
         }
     }
 
+
+    /**
+     * 归并排序
+     *
+     * @param arr
+     */
     public static void mergeSort(int[] arr) {
         int low = 0;
         int high = arr.length - 1;
         sort(arr, low, high);
 
+    }
+
+    /**
+     * 快速排序
+     *
+     * @param arr
+     */
+    public static void quickSort(int[] arr) {
+        if (arr.length > 0)
+            quick(arr, 0, arr.length - 1);
+    }
+
+    private static void quick(int[] arr, int low, int high) {
+        int i,j,index;
+        if(low>high)
+            return;
+        i=low;
+        j=high;
+        index = arr[i]; // 用子表的第一个记录做基准
+        while (i < j) { // 从表的两端交替向中间扫描
+            while (i < j && arr[j] >= index)
+                j--;
+            if (i < j)
+                arr[i++] = arr[j];// 用比基准小的记录替换低位记录
+            while (i < j && arr[i] < index)
+                i++;
+            if (i < j) // 用比基准大的记录替换高位记录
+                arr[j--] = arr[i];
+        }
+        arr[i]=index;
+        quick(arr,low,i-1);
+        quick(arr,i+1,high);
     }
 
     private static int[] sort(int[] arr, int low, int high) {
@@ -160,6 +199,7 @@ public class Sort {
             }
         }
     }
+
 
     private static void swap(int[] data, int i, int j) {
         int tmp = data[i];
