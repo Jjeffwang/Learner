@@ -1,4 +1,4 @@
-package multi.thread.module.signal;
+package multi.singleton;
 
 /**
  * Created by jeff on 2017/11/22.

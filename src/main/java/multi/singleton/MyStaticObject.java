@@ -1,4 +1,4 @@
-package multi.thread.module.signal;
+package multi.singleton;
 
 import java.io.Serializable;
 
