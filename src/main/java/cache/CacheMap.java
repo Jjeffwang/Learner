@@ -31,42 +31,25 @@ public class CacheMap {
                 }).build();
     }
 
-    /**
-     * @desction: 获取缓存
-     * @author: wangji
-     * @date: 2017/11/22 9:50
-     */
+
     public static Object get(String key) {
         return StringUtils.isNotEmpty(key) ? cache.getIfPresent(key) : null;
     }
 
-    /**
-     * @desction: 放入缓存
-     * @author: wangji
-     * @date: 2017/11/22 9:50
-     */
+
     public static void put(String key, Object value) {
         if (StringUtils.isNotEmpty(key) && value != null) {
             cache.put(key, value);
         }
     }
 
-    /**
-     * @desction: 移除缓存
-     * @author: wangji
-     * @date: 2017/11/22 9:50
-     */
     public static void remove(String key) {
         if (StringUtils.isNotEmpty(key)) {
             cache.invalidate(key);
         }
     }
 
-    /**
-     * @desction: 批量删除缓存
-     * @author: wangji
-     * @date: 2017/11/22 9:49
-     */
+
     public static void remove(List<String> keys) {
         if (keys != null && keys.size() > 0) {
             cache.invalidateAll(keys);
@@ -75,7 +58,7 @@ public class CacheMap {
 
 
     public static void main(String[] args) throws InterruptedException {
-        CacheMap.put("key1","value1");
+        CacheMap.put("key1", "value1");
         System.out.println(CacheMap.get("key1"));
         TimeUnit.SECONDS.sleep(1);
         System.out.println("- - - - - - - - - - - -  - - -  -");
