@@ -13,14 +13,13 @@ public class CacheMap {
 
     /**
      * @desction: 使用google guava缓存处理
-     * @author: wangji
-     * @date: 2017/11/22 9:59
+     * maximumSize定义了缓存的容量大小，当缓存数量即将到达容量上线时，则会进行缓存回收，回收最近没有使用或总体上很少使用的缓存项
      */
     private static Cache<String, Object> cache;
 
     static {
         cache = CacheBuilder.newBuilder().maximumSize(10000)
-                .expireAfterWrite(24, TimeUnit.HOURS)
+                .expireAfterWrite(2, TimeUnit.SECONDS)
                 .initialCapacity(10)
                 .removalListener(new RemovalListener<String, Object>() {
                     @Override
@@ -72,6 +71,15 @@ public class CacheMap {
         if (keys != null && keys.size() > 0) {
             cache.invalidateAll(keys);
         }
+    }
+
+
+    public static void main(String[] args) throws InterruptedException {
+        CacheMap.put("key1","value1");
+        System.out.println(CacheMap.get("key1"));
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("- - - - - - - - - - - -  - - -  -");
+        System.out.println(CacheMap.get("key1"));
     }
 }
 
