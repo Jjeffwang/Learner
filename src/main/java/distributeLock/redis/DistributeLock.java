@@ -42,12 +42,16 @@ public class DistributeLock {
             // 获取锁的超时时间，超过这个时间则放弃获取锁
             long end = System.currentTimeMillis() + acquireTimeout;
             while (System.currentTimeMillis() < end) {
+                //setnx set if not exist ==1表示设置成功   0表示失败
                 if (conn.setnx(lockKey, identifier) == 1) {
                     conn.expire(lockKey, lockExpire);
                     // 返回value值，用于释放锁时间确认
                     retIdentifier = identifier;
                     return retIdentifier;
                 }
+                //ttl time to live 返回给定 key 的剩余生存时间
+                //当 key 不存在时，返回 -2 。 当 key 存在但没有设置剩余生存时间时，返回 -1 。
+                // 否则，以毫秒为单位，返回 key 的剩余生存时间。 redis2.8之前都返回-1
                 if (conn.ttl(lockKey) == -1) {
                     conn.expire(lockKey, lockExpire);
                 }
