@@ -37,10 +37,9 @@
 
 
 //第三种
-function person(firstname,lastname,age,eyecolor)
-{
-    this.firstname=firstname;
-    this.lastname=lastname;
-    this.age=age;
-    this.eyecolor=eyecolor;
+function person(firstname, lastname, age, eyecolor) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.age = age;
+    this.eyecolor = eyecolor;
 }

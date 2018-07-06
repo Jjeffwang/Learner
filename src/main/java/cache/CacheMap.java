@@ -19,14 +19,11 @@ public class CacheMap {
 
     static {
         cache = CacheBuilder.newBuilder().maximumSize(10000)
-                .expireAfterWrite(2, TimeUnit.SECONDS)
+                .expireAfterWrite(10, TimeUnit.SECONDS)
                 .initialCapacity(10)
-                .removalListener(new RemovalListener<String, Object>() {
-                    @Override
-                    public void onRemoval(RemovalNotification<String, Object> rn) {
-                        if (log.isInfoEnabled()) {
-                            log.info("被移除缓存{}:{}", rn.getKey(), rn.getValue());
-                        }
+                .removalListener((RemovalListener<String, Object>) rn -> {
+                    if (log.isInfoEnabled()) {
+                        log.info("被移除缓存{}:{}", rn.getKey(), rn.getValue());
                     }
                 }).build();
     }
@@ -37,10 +34,22 @@ public class CacheMap {
     }
 
 
-    public static void put(String key, Object value) {
+    /**
+     * guava默认是对重复的key值做value的跟新
+     * 这里在put前增加校验,以实现唯一锁的效果
+     * @param key
+     * @param value
+     * @return
+     */
+    public static boolean put(String key, Object value) {
         if (StringUtils.isNotEmpty(key) && value != null) {
-            cache.put(key, value);
+            while (cache.getIfPresent(key)==null){
+                cache.put(key, value);
+                return true;
+            }
+            return false;
         }
+        return false;
     }
 
     public static void remove(String key) {
@@ -58,9 +67,19 @@ public class CacheMap {
 
 
     public static void main(String[] args) throws InterruptedException {
-        CacheMap.put("key1", "value1");
+        Thread thread1 = new Thread(() -> CacheMap.put("key1", "value1"));
+        Thread thread2 = new Thread(() -> CacheMap.put("key1", "value2"));
+        Thread thread3 = new Thread(() -> CacheMap.put("key1", "value3"));
+        thread1.run();
+        thread2.run();
+        thread3.run();
+//        CacheMap.put("key1", "value1");
         System.out.println(CacheMap.get("key1"));
-        TimeUnit.SECONDS.sleep(1);
+//        TimeUnit.SECONDS.sleep(1);
+
+        System.out.println(CacheMap.get("key1"));
+        System.out.println(CacheMap.get("key1"));
+        TimeUnit.SECONDS.sleep(12);
         System.out.println("- - - - - - - - - - - -  - - -  -");
         System.out.println(CacheMap.get("key1"));
     }

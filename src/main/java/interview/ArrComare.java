@@ -8,7 +8,7 @@ public class ArrComare {
     public static int[] minSum(int[] arr1, int[] arr2) {
 
         int len = arr1.length;
-        int sum ;
+        int sum;
         int[] result = new int[len];
         int[] minResult = new int[len];
         for (int i = 0; i < len; i++) {
@@ -35,7 +35,7 @@ public class ArrComare {
 
             }
         }
-        return arr[len-1];
+        return arr[len - 1];
     }
 
     public static void main(String[] args) {

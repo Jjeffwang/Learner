@@ -19,7 +19,7 @@ public class RemoveEvenVer {
         list.add(4);
         list.add(2);
         removeEvenVer3(list);
-        for(Integer integer:list){
+        for (Integer integer : list) {
             System.out.println(integer);
         }
 
@@ -55,6 +55,7 @@ public class RemoveEvenVer {
 
     /**
      * LinkedList remove是一次的 ArrayList是两次的
+     *
      * @param list
      */
     public static void removeEvenVer3(List<Integer> list) {

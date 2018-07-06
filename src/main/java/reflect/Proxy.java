@@ -5,7 +5,7 @@ package reflect;
  */
 public class Proxy {
 
-    public void run(){
+    public void run() {
         System.out.println("running!!!");
     }
 }
