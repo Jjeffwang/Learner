@@ -1,4 +1,4 @@
-package tree;
+package StructuresAndAlgorithm.tree;
 
 /**
  * Created by ${WangChengYong} on 2018/3/30.

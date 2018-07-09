@@ -1,4 +1,4 @@
-package tree;
+package StructuresAndAlgorithm.tree;
 
 import org.apache.commons.collections.BufferUnderflowException;
 

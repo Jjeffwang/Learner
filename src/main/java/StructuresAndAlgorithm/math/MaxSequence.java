@@ -1,4 +1,4 @@
-package math;
+package StructuresAndAlgorithm.math;
 
 /**
  * Created by ${WangChengYong} on 2018/3/28.

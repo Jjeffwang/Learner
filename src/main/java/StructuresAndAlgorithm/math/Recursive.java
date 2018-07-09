@@ -1,4 +1,4 @@
-package math;
+package StructuresAndAlgorithm.math;
 
 /**
  * 递归

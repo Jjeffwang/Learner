@@ -1,4 +1,4 @@
-package table;
+package StructuresAndAlgorithm.table;
 
 import java.util.Iterator;
 

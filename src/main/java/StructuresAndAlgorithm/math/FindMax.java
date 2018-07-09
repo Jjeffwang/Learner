@@ -1,4 +1,4 @@
-package math;
+package StructuresAndAlgorithm.math;
 
 import java.util.Comparator;
 
