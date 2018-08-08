@@ -18,7 +18,7 @@ public class CacheMap {
     private static Cache<String, Object> cache;
 
     static {
-        cache = CacheBuilder.newBuilder().maximumSize(10000)
+        cache = CacheBuilder.newBuilder().maximumSize(3)
                 .expireAfterWrite(10, TimeUnit.SECONDS)
                 .initialCapacity(10)
                 .removalListener((RemovalListener<String, Object>) rn -> {
@@ -68,20 +68,14 @@ public class CacheMap {
 
     public static void main(String[] args) throws InterruptedException {
         Thread thread1 = new Thread(() -> CacheMap.put("key1", "value1"));
-        Thread thread2 = new Thread(() -> CacheMap.put("key1", "value2"));
-        Thread thread3 = new Thread(() -> CacheMap.put("key1", "value3"));
+        Thread thread2 = new Thread(() -> CacheMap.put("key2", "value2"));
+        Thread thread3 = new Thread(() -> CacheMap.put("key3", "value3"));
+        Thread thread4 = new Thread(() -> CacheMap.put("key4", "value4"));
         thread1.run();
         thread2.run();
         thread3.run();
-//        CacheMap.put("key1", "value1");
-        System.out.println(CacheMap.get("key1"));
-//        TimeUnit.SECONDS.sleep(1);
-
-        System.out.println(CacheMap.get("key1"));
-        System.out.println(CacheMap.get("key1"));
-        TimeUnit.SECONDS.sleep(12);
-        System.out.println("- - - - - - - - - - - -  - - -  -");
-        System.out.println(CacheMap.get("key1"));
+        thread4.run();
+        System.out.println(cache.size());
     }
 }
 

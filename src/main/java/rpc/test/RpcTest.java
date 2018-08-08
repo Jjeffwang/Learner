@@ -18,14 +18,11 @@ public class RpcTest {
 
     public static void main(String[] args) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    RpcExporter.exeporter("localhost", 8088);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        new Thread(() -> {
+            try {
+                RpcExporter.exeporter("localhost", 8088);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }).start();
 
