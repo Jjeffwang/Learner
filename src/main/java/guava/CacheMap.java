@@ -67,6 +67,7 @@ public class CacheMap {
 
 
     public static void main(String[] args) throws InterruptedException {
+        System.out.println(Integer.MAX_VALUE);
         Thread thread1 = new Thread(() -> CacheMap.put("key1", "value1"));
         Thread thread2 = new Thread(() -> CacheMap.put("key2", "value2"));
         Thread thread3 = new Thread(() -> CacheMap.put("key3", "value3"));
