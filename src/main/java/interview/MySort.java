@@ -72,32 +72,88 @@ public class MySort {
     }
 
     public static void quick(int[] numbers) {
+        printArr(numbers);
         quick(numbers, 0, numbers.length - 1);
     }
 
-    public static void quick(int[] numbers, int low, int high) {
-
+    public static void quick(int[] arr, int low, int high) {
         int i = low;
         int j = high;
-        if (low > high)
+        if (low > high) {
             return;
-        int index = numbers[low];
+        }
+        int mid = (high + low) / 2;
+        int temp = getMid(low, mid, high, arr)[low];
+//        int temp = arr[low];
         while (i < j) {
-            while (i < j && index < numbers[j])
+            while (i < j && temp < arr[j]) {
                 j--;
-            if (i < j) {
-                numbers[i++] = numbers[j];
             }
-            while (i < j && index >= numbers[i]) {
+            if (i < j) {
+                arr[i++] = arr[j];
+            }
+            while (i < j && temp >= arr[i]) {
                 i++;
             }
             if (i < j) {
-                numbers[j--] = numbers[i];
+                arr[j--] = arr[i];
             }
         }
-        numbers[i] = index;
-        quick(numbers, low, i - 1);
-        quick(numbers, i + 1, high);
+        arr[i] = temp;
+        printArr(arr);
+        quick(arr, low, i - 1);
+        quick(arr, i + 1, high);
+    }
+
+    private static int[] getMid(int first, int second, int third, int arr[]) {
+        int temp;
+        if (arr[first] < arr[second]) {
+            if (arr[second] < arr[third]) {
+                temp = arr[first];
+                arr[second] = arr[first];
+                arr[first] = temp;
+            }
+        } else {
+            if (arr[second] < arr[third]) {
+                temp = arr[third];
+                arr[third] = arr[first];
+                arr[first] = temp;
+
+            }
+        }
+        return arr;
+    }
+//    public static void quick(int[] numbers, int low, int high) {
+//
+//        int i = low;
+//        int j = high;
+//        if (low > high)
+//            return;
+//        int index = numbers[low];
+//        while (i < j) {
+//            while (i < j && index < numbers[j])
+//                j--;
+//            if (i < j) {
+//                numbers[i++] = numbers[j];
+//            }
+//            while (i < j && index >= numbers[i]) {
+//                i++;
+//            }
+//            if (i < j) {
+//                numbers[j--] = numbers[i];
+//            }
+//        }
+//        numbers[i] = index;
+//        quick(numbers, low, i - 1);
+//        quick(numbers, i + 1, high);
+//    }
+
+
+    private static void printArr(int[] arr) {
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
     }
 
 }

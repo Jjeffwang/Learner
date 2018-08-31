@@ -14,8 +14,8 @@ public class BinarySearchTreeTest {
         binarySearchTree.insert(6);
         binarySearchTree.insert(7);
         binarySearchTree.insert(9);
-        int max=binarySearchTree.findMax();
-        System.out.println(max);
+//        int max=binarySearchTree.findMax();
+//        System.out.println(max);
         binarySearchTree.printTree();
     }
 }

@@ -129,6 +129,7 @@ public class Sort {
                 arr[j--] = arr[i];
         }
         arr[i]=index;
+        printArr(arr);
         quick(arr,low,i-1);
         quick(arr,i+1,high);
     }
@@ -205,5 +206,12 @@ public class Sort {
         int tmp = data[i];
         data[i] = data[j];
         data[j] = tmp;
+    }
+
+    private static void printArr(int[] arr) {
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
     }
 }

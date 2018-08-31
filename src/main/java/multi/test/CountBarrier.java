@@ -14,13 +14,11 @@ public class CountBarrier {
 
     private static final int THREAD_COUNT_NUM = 7;
 
+
     public static void main(String[] args) {
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(THREAD_COUNT_NUM, new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("7人分队集结，同事出发，分头寻找龙珠");
-                findDragon();
-            }
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(THREAD_COUNT_NUM, () -> {
+            System.out.println("7人分队集结，同事出发，分头寻找龙珠");
+            findDragon();
         });
 
         for (int i = 1; i <= THREAD_COUNT_NUM; i++) {
@@ -29,9 +27,8 @@ public class CountBarrier {
                 try {
                     System.out.println("召集第" + index + "分队成员");
                     cyclicBarrier.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (BrokenBarrierException e) {
+
+                } catch (InterruptedException | BrokenBarrierException e) {
                     e.printStackTrace();
                 }
             }).start();

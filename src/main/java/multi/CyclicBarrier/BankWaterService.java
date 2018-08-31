@@ -23,18 +23,15 @@ public class BankWaterService implements Runnable {
 
     private void count() {
         for (int i = 0; i < 4; i++) {
-            executor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    countMap.put(Thread.currentThread().getName(), 1);
-                    try {
-                        //4个线程计算4次，每计算完成一次插入一个屏障
-                        cyclicBarrier.await();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (BrokenBarrierException e) {
-                        e.printStackTrace();
-                    }
+            executor.execute(() -> {
+                countMap.put(Thread.currentThread().getName(), 1);
+                try {
+                    //4个线程计算4次，每计算完成一次插入一个屏障
+                    cyclicBarrier.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
                 }
             });
         }
