@@ -1,0 +1,75 @@
+package hystrix.state;
+
+import hystrix.breaker.AbstractCircuitBreaker;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * @Author: chengyong.wang
+ * @Date: 2018/9/27 下午5:35
+ * @Description:
+ */
+public class HalfOpenState implements State {
+
+    /**
+     * 进入当前状态的初始化时间
+     */
+    private long stateTime = System.currentTimeMillis();
+
+    /**
+     * 半开状态，失败计数器
+     */
+    private AtomicInteger failNum = new AtomicInteger(0);
+
+    /**
+     * 半开状态，允许通过的计数器
+     */
+    private AtomicInteger passNum = new AtomicInteger(0);
+
+    @Override
+    public String getStateName() {
+        return this.getClass().getSimpleName();
+    }
+
+    @Override
+    public void checkAndSwitchState(AbstractCircuitBreaker cb) {
+        // 判断半开时间是否结束
+        long idleTime = Long.parseLong(cb.thresholdPassRateForHalfOpen.split("/")[1]) * 1000L;
+        long now = System.currentTimeMillis();
+        if (idleTime + idleTime <= now) {
+            // 如果半开状态已结束，失败次数是否超过了阀值
+            int maxFailNum = cb.thresholdFailNumForHalfOpen;
+            if (failNum.get() >= maxFailNum) {
+                // 失败超过阀值，认为服务没有恢复，重新进入熔断打开状态
+                cb.setState(new OpenState());
+            } else {
+                // 没超过，认为服务恢复，进入熔断关闭状态
+                cb.setState(new CloseState());
+            }
+        }
+    }
+
+    @Override
+    public boolean canPassCheck(AbstractCircuitBreaker cb) {
+        // 检查是否切换状态
+        checkAndSwitchState(cb);
+        int maxPassNum = Integer.parseInt(cb.thresholdPassRateForHalfOpen.split("/")[0]);
+        if (passNum.get() > maxPassNum) {
+            return false;
+        }
+        // 检测是否超过了阀值
+        if (passNum.incrementAndGet() <= maxPassNum) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void countFailNum(AbstractCircuitBreaker cb) {
+        // 失败计数
+        failNum.incrementAndGet();
+
+        // 检查是否切换状态
+        checkAndSwitchState(cb);
+    }
+}
