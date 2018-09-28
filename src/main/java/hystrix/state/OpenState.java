@@ -9,7 +9,6 @@ import hystrix.breaker.AbstractCircuitBreaker;
  */
 public class OpenState implements State{
 
-
     /**
      * 进入当前状态的初始化时间
      */
@@ -40,6 +39,6 @@ public class OpenState implements State{
 
     @Override
     public void countFailNum(AbstractCircuitBreaker cb) {
-
+        // nothing
     }
 }

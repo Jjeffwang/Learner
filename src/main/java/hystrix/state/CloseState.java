@@ -31,7 +31,7 @@ public class CloseState implements State {
     public void checkAndSwitchState(AbstractCircuitBreaker cb) {
         // 阀值判断，如果失败到达阀值，切换状态到打开状态
         long maxFailNum = Long.parseLong(cb.thresholdFailRateForClose.split("/")[0]);
-        if (failNum.get() > maxFailNum) {
+        if (failNum.get() >= maxFailNum) {
             cb.setState(new OpenState());
         }
     }
@@ -45,7 +45,7 @@ public class CloseState implements State {
     @Override
     public void countFailNum(AbstractCircuitBreaker cb) {
         // 检查计数器是否过期了，否则重新计数
-        long period = Long.parseLong(cb.thresholdFailRateForClose.split("/")[1]);
+        long period = Long.parseLong(cb.thresholdFailRateForClose.split("/")[1])*1000L;
         long now = System.currentTimeMillis();
         if (failNumClearTime + period <= now) {
             failNum.set(0);

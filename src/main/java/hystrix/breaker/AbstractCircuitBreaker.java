@@ -40,15 +40,17 @@ public abstract class AbstractCircuitBreaker implements CircuitBreaker {
     }
 
     public void setState(State state) {
-        State currentState=getState();
-        if(currentState.getStateName().equals(state.getStateName())){
+        // 当前状态不能切换为当前状态
+        State currentState = getState();
+        if (currentState.getStateName().equals(state.getStateName())) {
             return;
         }
+
         // 多线程环境加锁
-        synchronized (this){
+        synchronized (this) {
             // 二次判断
             currentState = getState();
-            if (currentState.getStateName().equals(state.getStateName())){
+            if (currentState.getStateName().equals(state.getStateName())) {
                 return;
             }
 

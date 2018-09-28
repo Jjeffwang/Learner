@@ -28,6 +28,6 @@ public class LocalCircuitBreaker extends AbstractCircuitBreaker {
 
     @Override
     public void countFailNum() {
-        getState().canPassCheck(this);
+        getState().countFailNum(this);
     }
 }
