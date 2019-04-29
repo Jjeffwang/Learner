@@ -16,73 +16,63 @@ public class Condition123 {
     final private static Condition conditionC = lock.newCondition();
 
     public static void main(String[] args) {
-        Thread threadA = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    lock.lock();
-                    while (nextPrintWho != 1) {
-                        conditionA.await();
-                    }
-                    for (int i = 0; i < 3; i++) {
-                        System.out.println("ThreadA" + (i + 1));
-                    }
-                    nextPrintWho = 2;
-                    conditionB.signalAll();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    lock.unlock();
+        Thread threadA = new Thread(() -> {
+            try {
+                lock.lock();
+                while (nextPrintWho != 1) {
+                    conditionA.await();
                 }
-            }
-        };
-        Thread threadB = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    lock.lock();
-                    while (nextPrintWho != 2) {
-                        conditionB.await();
-                    }
-                    for (int i = 0; i < 3; i++) {
-                        System.out.println("ThreadB" + (i + 1));
-                    }
-                    nextPrintWho = 3;
-                    conditionC.signalAll();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    lock.unlock();
+                for (int i = 0; i < 3; i++) {
+                    System.out.println("ThreadA" + (i + 1));
                 }
+                nextPrintWho = 2;
+                conditionB.signalAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-        };
-        Thread threadC = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    lock.lock();
-                    while (nextPrintWho != 3) {
-                        conditionC.await();
-                    }
-                    for (int i = 0; i < 3; i++) {
-                        System.out.println("ThreadC" + (i + 1));
-                    }
-                    nextPrintWho = 1;
-                    conditionA.signalAll();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    lock.unlock();
+        });
+        Thread threadB = new Thread(() -> {
+            try {
+                lock.lock();
+                while (nextPrintWho != 2) {
+                    conditionB.await();
                 }
+                for (int i = 0; i < 3; i++) {
+                    System.out.println("ThreadB" + (i + 1));
+                }
+                nextPrintWho = 3;
+                conditionC.signalAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
             }
-        };
+        });
+        Thread threadC = new Thread(() -> {
+            try {
+                lock.lock();
+                while (nextPrintWho != 3) {
+                    conditionC.await();
+                }
+                for (int i = 0; i < 3; i++) {
+                    System.out.println("ThreadC" + (i + 1));
+                }
+                nextPrintWho = 1;
+                conditionA.signalAll();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        });
 
         Thread[] A = new Thread[5];
         Thread[] B = new Thread[5];
         Thread[] C = new Thread[5];
         for (int i = 0; i < 3; i++) {
             A[i] = new Thread(threadA);
-            ;
             B[i] = new Thread(threadB);
             C[i] = new Thread(threadC);
             A[i].start();
